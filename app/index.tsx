@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { authService } from '@/services/authService';
 import { Student } from '@/types/database';
@@ -78,11 +78,10 @@ export default function LoginScreen() {
           style={[styles.loginButton, loading && styles.loginButtonDisabled]} 
           onPress={handleLogin}
           disabled={loading}
-        >
-          <Text style={styles.loginButtonText}>
-            {loading ? 'Logging in...' : 'Login'}
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.logoPlaceholder}>
+          <Text style={styles.logoText}>DSAT</Text>
+          <Text style={styles.logoSubtext}>MATH PREP ACADEMY</Text>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
@@ -102,9 +101,27 @@ const styles = StyleSheet.create({
   logoContainer: {
     marginBottom: 40,
   },
-  logo: {
-    width: 120,
-    height: 120,
+  logoPlaceholder: {
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    backgroundColor: '#1a237e',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: '#c62828',
+  },
+  logoText: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 5,
+  },
+  logoSubtext: {
+    fontSize: 10,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: '600',
   },
   logoPlaceholder: {
     backgroundColor: '#F3F4F6',
