@@ -30,7 +30,7 @@ class AuthService {
 
       // For now, simulate authentication with mock data
       // In a real app, this would query your Supabase database
-      if (code === '144') {
+      if (code === '144' || code === '144') {
         return {
           success: true,
           student: {
