@@ -55,11 +55,9 @@ export default function HomeScreen() {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.logoContainer} onPress={openSidebar}>
-          <Image 
-            source={require('@/assets/images/dsat-logo.png')} 
-            style={styles.logo}
-            resizeMode="contain"
-          />
+          <View style={styles.logoPlaceholder}>
+            <Text style={styles.logoText}>DSAT</Text>
+          </View>
         </TouchableOpacity>
         
         <View style={styles.titleContainer}>
@@ -112,11 +110,9 @@ export default function HomeScreen() {
           >
             {/* Sidebar Header */}
             <View style={styles.sidebarHeader}>
-              <Image 
-                source={require('@/assets/images/dsat-logo.png')} 
-                style={styles.sidebarLogo}
-                resizeMode="contain"
-              />
+              <View style={styles.sidebarLogoPlaceholder}>
+                <Text style={styles.sidebarLogoText}>DSAT</Text>
+              </View>
               <TouchableOpacity onPress={closeSidebar} style={styles.closeButton}>
                 <X size={24} color="#374151" />
               </TouchableOpacity>
@@ -162,6 +158,19 @@ const styles = StyleSheet.create({
   logo: {
     width: 40,
     height: 40,
+  },
+  logoPlaceholder: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#3B82F6',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
   titleContainer: {
     alignItems: 'center',
@@ -252,6 +261,19 @@ const styles = StyleSheet.create({
   sidebarLogo: {
     width: 50,
     height: 50,
+  },
+  sidebarLogoPlaceholder: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#3B82F6',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sidebarLogoText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   closeButton: {
     padding: 8,
