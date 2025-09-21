@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { authService } from '@/services/authService';
 import { Student } from '@/types/database';
@@ -78,13 +78,13 @@ export default function LoginScreen() {
           style={[styles.loginButton, loading && styles.loginButtonDisabled]} 
           onPress={handleLogin}
           disabled={loading}
-        <View style={styles.logoPlaceholder}>
-          <Text style={styles.logoText}>DSAT</Text>
-          <Text style={styles.logoSubtext}>MATH PREP ACADEMY</Text>
-        </View>
+        >
+          <Text style={styles.loginButtonText}>
+            {loading ? 'Logging In...' : 'Login'}
+          </Text>
+        </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
-  )
   );
 }
 
