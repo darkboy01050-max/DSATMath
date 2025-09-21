@@ -38,9 +38,11 @@ export default function LoginScreen() {
       <View style={styles.content}>
         {/* Logo Placeholder */}
         <View style={styles.logoContainer}>
-          <View style={[styles.logo, styles.logoPlaceholder]}>
-            <Text style={styles.logoText}>DSAT</Text>
-          </View>
+          <Image 
+            source={require('../assets/images/dsat-logo.png')} 
+            style={styles.logo}
+            resizeMode="contain"
+          />
         </View>
 
         {/* Title Section */}
