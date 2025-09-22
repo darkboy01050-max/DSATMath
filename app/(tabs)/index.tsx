@@ -8,7 +8,8 @@ import {
   Modal,
   Animated,
   Dimensions,
-  SafeAreaView
+  SafeAreaView,
+  ScrollView
 } from 'react-native';
 import { X } from 'lucide-react-native';
 
@@ -55,9 +56,11 @@ export default function HomeScreen() {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.logoContainer} onPress={openSidebar}>
-          <View style={styles.logoPlaceholder}>
-            <Text style={styles.logoText}>DSAT</Text>
-          </View>
+          <Image 
+            source={require('@/assets/images/dsat-logo.png')} 
+            style={styles.logo}
+            resizeMode="contain"
+          />
         </TouchableOpacity>
         
         <View style={styles.titleContainer}>
@@ -67,26 +70,74 @@ export default function HomeScreen() {
       </View>
 
       {/* Main Content */}
-      <View style={styles.content}>
-        <View style={styles.studentCard}>
-          <Text style={styles.cardTitle}>Student Information</Text>
-          
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Name:</Text>
-            <Text style={styles.infoValue}>John Doe</Text>
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        <View style={styles.contentContainer}>
+          <View style={styles.studentCard}>
+            <Text style={styles.cardTitle}>Student Information</Text>
+            
+            <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Name:</Text>
+              <Text style={styles.infoValue}>John Doe</Text>
+            </View>
+            
+            <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Age:</Text>
+              <Text style={styles.infoValue}>16 years old</Text>
+            </View>
+            
+            <View style={styles.infoRow}>
+              <Text style={styles.infoLabel}>Grade:</Text>
+              <Text style={styles.infoValue}>11th Grade</Text>
+            </View>
           </View>
-          
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Age:</Text>
-            <Text style={styles.infoValue}>16 years old</Text>
+
+          {/* Sessions Schedule */}
+          <View style={styles.scheduleCard}>
+            <Text style={styles.cardTitle}>Sessions Schedule</Text>
+            
+            <View style={styles.scheduleItem}>
+              <View style={styles.scheduleDay}>
+                <Text style={styles.dayText}>Monday</Text>
+                <Text style={styles.timeText}>4:00 PM - 6:00 PM</Text>
+              </View>
+              <View style={styles.scheduleStatus}>
+                <Text style={styles.statusText}>Upcoming</Text>
+              </View>
+            </View>
+
+            <View style={styles.scheduleItem}>
+              <View style={styles.scheduleDay}>
+                <Text style={styles.dayText}>Wednesday</Text>
+                <Text style={styles.timeText}>4:00 PM - 6:00 PM</Text>
+              </View>
+              <View style={styles.scheduleStatus}>
+                <Text style={styles.statusText}>Upcoming</Text>
+              </View>
+            </View>
+
+            <View style={styles.scheduleItem}>
+              <View style={styles.scheduleDay}>
+                <Text style={styles.dayText}>Friday</Text>
+                <Text style={styles.timeText}>4:00 PM - 6:00 PM</Text>
+              </View>
+              <View style={[styles.scheduleStatus, styles.completedStatus]}>
+                <Text style={[styles.statusText, styles.completedStatusText]}>Completed</Text>
+              </View>
+            </View>
           </View>
-          
-          <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Grade:</Text>
-            <Text style={styles.infoValue}>11th Grade</Text>
-          </View>
+
+          {/* Your Plan Button */}
+          <TouchableOpacity 
+            style={styles.planButton}
+            onPress={() => {
+              // TODO: Open Google Drive link when provided
+              console.log('Navigate to Your Plan - Google Drive link will be added');
+            }}
+          >
+            <Text style={styles.planButtonText}>Your Plan</Text>
+          </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
 
       {/* Sidebar Modal */}
       <Modal
@@ -110,9 +161,11 @@ export default function HomeScreen() {
           >
             {/* Sidebar Header */}
             <View style={styles.sidebarHeader}>
-              <View style={styles.sidebarLogoPlaceholder}>
-                <Text style={styles.sidebarLogoText}>DSAT</Text>
-              </View>
+              <Image 
+                source={require('@/assets/images/dsat-logo.png')} 
+                style={styles.sidebarLogo}
+                resizeMode="contain"
+              />
               <TouchableOpacity onPress={closeSidebar} style={styles.closeButton}>
                 <X size={24} color="#374151" />
               </TouchableOpacity>
@@ -159,19 +212,6 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
   },
-  logoPlaceholder: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#3B82F6',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logoText: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
   titleContainer: {
     alignItems: 'center',
     paddingTop: 10,
@@ -190,6 +230,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+  },
+  contentContainer: {
     padding: 24,
   },
   studentCard: {
@@ -229,6 +271,75 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     fontWeight: '600',
   },
+  scheduleCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 24,
+    marginTop: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+  },
+  scheduleItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
+  },
+  scheduleDay: {
+    flex: 1,
+  },
+  dayText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  timeText: {
+    fontSize: 14,
+    color: '#6B7280',
+  },
+  scheduleStatus: {
+    backgroundColor: '#DBEAFE',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+  completedStatus: {
+    backgroundColor: '#D1FAE5',
+  },
+  statusText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#1D4ED8',
+  },
+  completedStatusText: {
+    color: '#059669',
+  },
+  planButton: {
+    backgroundColor: '#000000',
+    borderRadius: 12,
+    paddingVertical: 16,
+    marginTop: 24,
+    marginBottom: 32,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  planButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -261,19 +372,6 @@ const styles = StyleSheet.create({
   sidebarLogo: {
     width: 50,
     height: 50,
-  },
-  sidebarLogoPlaceholder: {
-    width: 50,
-    height: 50,
-    backgroundColor: '#3B82F6',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  sidebarLogoText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
   },
   closeButton: {
     padding: 8,
