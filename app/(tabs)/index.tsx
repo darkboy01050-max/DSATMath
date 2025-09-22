@@ -8,7 +8,7 @@ import {
   Modal,
   Animated,
   Dimensions,
-  SafeAreaView,
+  SafeAeeaView,
   ScrollView
 } from 'react-native';
 import { X } from 'lucide-react-native';
