@@ -123,19 +123,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '600',
   },
-  logoPlaceholder: {
-    backgroundColor: '#F3F4F6',
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#E5E7EB',
-  },
-  logoText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#374151',
-  },
   titleSection: {
     alignItems: 'center',
     marginBottom: 48,
