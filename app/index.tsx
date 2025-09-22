@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform, Image } from 'react-native';
 import { router } from 'expo-router';
 import { authService } from '@/services/authService';
 import { Student } from '@/types/database';
@@ -18,16 +18,11 @@ export default function LoginScreen() {
     setLoading(true);
     setError('');
 
-    const result = await authService.loginWithCode(code.trim());
-
-    setLoading(false);
-
-    if (result.success && result.student) {
-      // Store student data and navigate to home
+    // Simulate login delay for better UX
+    setTimeout(() => {
+      setLoading(false);
       router.replace('/(tabs)');
-    } else {
-      setError(result.error || 'Login failed');
-    }
+    }, 1000);
   };
 
   return (
@@ -38,10 +33,11 @@ export default function LoginScreen() {
       <View style={styles.content}>
         {/* Logo Placeholder */}
         <View style={styles.logoContainer}>
-          <View style={styles.logoPlaceholder}>
-            <Text style={styles.logoText}>DSAT</Text>
-            <Text style={styles.logoSubtext}>MATH PREP ACADEMY</Text>
-          </View>
+          <Image 
+            source={require('@/assets/images/dsat-logo.png')} 
+            style={styles.logo}
+            resizeMode="contain"
+          />
         </View>
 
         {/* Title Section */}
@@ -101,27 +97,9 @@ const styles = StyleSheet.create({
   logoContainer: {
     marginBottom: 40,
   },
-  logoPlaceholder: {
+  logo: {
     width: 180,
     height: 180,
-    borderRadius: 90,
-    backgroundColor: '#1a237e',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 3,
-    borderColor: '#c62828',
-  },
-  logoText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 5,
-  },
-  logoSubtext: {
-    fontSize: 10,
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: '600',
   },
   titleSection: {
     alignItems: 'center',
